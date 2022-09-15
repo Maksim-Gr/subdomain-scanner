@@ -21,3 +21,17 @@ pub fn scan_ports(mut subdomain:Subdomain) -> Subdomain {
       .collect();
   subdomain
 }
+
+fn scan_port(mut socket_address: SocketAddr, port: u16) -> Port {
+  let timeout = Duration::from_secs(3);
+  socket_address.set_port(port);
+
+  let is_open = if let Ok(_) = TcpStream::connect_timeout(&socket_address, timeout) {
+    true
+  }else { false };
+
+  Port {
+    port,
+    is_open
+  }
+}
