@@ -11,7 +11,7 @@ pub fn scan_ports(mut subdomain:Subdomain) -> Subdomain {
       .to_socket_addrs()
       .expect("port scanner: Creating socket address")
       .collect();
-  if socket_addresses.is_empty() {
+  if socket_addresses.len() == 0 {
     return subdomain;
   }
   subdomain.open_ports = MOST_COMMON_PORTS_100

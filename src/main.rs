@@ -2,12 +2,14 @@ mod subdomain;
 mod error;
 mod ports;
 mod model;
+mod common_ports;
 
 use std::env;
 use std::time::Duration;
-use reqwest::{Client, redirect};
+use reqwest::{blocking::Client, redirect};
 pub use error::Error;
 use crate::model::Subdomain;
+use rayon::prelude::*;
 
 fn main() -> Result<(), anyhow::Error> {
     let args:Vec<String> = env::args().collect();

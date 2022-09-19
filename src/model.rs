@@ -12,7 +12,7 @@ pub struct Port {
     pub is_open: bool,
 }
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Deserialize, Clone)]
 pub struct CrtShEntry {
     pub name_value: String,
 }
